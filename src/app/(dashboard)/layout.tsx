@@ -1,5 +1,5 @@
 import Providers from '~/components/Providers';
-import AuthGuard from '~/hocs/AuthGuard';
+import DashboardLayout from '~/layouts/DashboardLayout';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -7,7 +7,7 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <Providers>
-      <AuthGuard>{children}</AuthGuard>
+      <DashboardLayout>{children}</DashboardLayout>
     </Providers>
   );
 };

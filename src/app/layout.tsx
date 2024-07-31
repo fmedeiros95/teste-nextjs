@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
-import { cn } from '~/lib/utils';
 import './globals.css';
 
 const font = Poppins({
@@ -21,8 +20,8 @@ type RootLayoutProps = {
 };
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
-    <html lang='en' className='h-full'>
-      <body className={cn('h-full', font.className)}>{children}</body>
+    <html lang='en'>
+      <body className={font.className}>{children}</body>
     </html>
   );
 };
