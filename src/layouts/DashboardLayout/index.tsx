@@ -1,20 +1,44 @@
+'use client';
+
+import { PiArrowLeft, PiList } from 'react-icons/pi';
+import { cn } from '~/lib/utils';
+import { useAppStore } from '~/stores/useAppStore';
+
 type DashboardLayoutProps = {
   children: React.ReactNode;
 };
 const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
+  const { isCompactMenu, setIsCompactMenu } = useAppStore();
+
   return (
     <>
-      <aside className='hidden lg:fixed lg:inset-y-0 lg:z-10 lg:flex lg:flex-col transition-all duration-300 ease-in-out lg:w-72'>
+      <aside
+        className={cn('hidden lg:fixed lg:inset-y-0 lg:z-10 lg:flex lg:flex-col transition-all duration-300 ease-in-out', {
+          'lg:w-72': !isCompactMenu,
+          'lg:w-20': isCompactMenu,
+        })}
+      >
         <div className='bg-white flex grow flex-col gap-y-4 border-r'>
           <div className='h-20 border-b flex items-center justify-center'>Sidebar Logo</div>
           <div className='flex-1 flex flex-col justify-center items-center'>Sidebar Menu</div>
           <div className='mt-auto border-t flex justify-center items-center h-16'>Sidebar Footer</div>
         </div>
       </aside>
-      <div className='flex flex-col justify-between min-h-screen transition-all duration-300 ease-in-out lg:pl-72'>
-        <header className='sticky top-0 w-full px-4 sm:px-6 lg:px-8'>
-          <div className='flex justify-between items-center gap-x-4 sm:gap-x-6 mx-auto mt-4 bg-white border px-6 h-16 rounded-lg'>
-            <div>Menu toggle + Search</div>
+      <div
+        className={cn('flex flex-col justify-between min-h-screen transition-all duration-300 ease-in-out', {
+          'lg:pl-72': !isCompactMenu,
+          'lg:pl-20': isCompactMenu,
+        })}
+      >
+        <header className='sticky bg-white border-b top-0 w-full h-20'>
+          <div className='flex justify-between items-center h-full gap-x-4 sm:gap-x-6 mx-auto px-4 sm:px-6 lg:px-8 rounded-lg'>
+            <div>
+              <button type='button' className='animate-bounce' onClick={() => setIsCompactMenu(!isCompactMenu)}>
+                {isCompactMenu && <PiList className='size-6' />}
+                {!isCompactMenu && <PiArrowLeft className='size-6' />}
+              </button>
+              Menu toggle + Search
+            </div>
             <div>User Info + shortcuts</div>
           </div>
         </header>

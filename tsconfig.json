@@ -20,10 +20,7 @@
       }
     ],
     "paths": {
-      "~/*": ["./src/*"],
-      "~components/*": ["./src/components/*"],
-      "~layouts/*": ["./src/layouts/*"],
-      "~views/*": ["./src/views/*"]
+      "~/*": ["./src/*"]
     }
   },
   "include": ["next.config.mjs", "tailwind.config.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
